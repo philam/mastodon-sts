@@ -110,10 +110,10 @@ function createSelectedCsv() {
     var encodedUri = encodeURI(csvFile);
     var link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "my_mastodon_sociologists.csv");
+    link.setAttribute("download", "my_sts_list.csv");
     document.body.appendChild(link); // Required for FF
 
-    link.click(); // This will download the data file named "my_mastodon_sociologists.csv".
+    link.click(); // This will download the data file named "my_sts_list.csv".
 
 }
 
