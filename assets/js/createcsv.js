@@ -20,10 +20,11 @@ $(document).ready(function() {
 function printSociologistsOnWP(data) {
   console.log(data);
   var allsociologists_complete = Papa.parse(data, {header: true}); // parses csv to json
+  var faultylinescounter = 0;
   for (var i = 0; i < allsociologists_complete["data"].length; i++){
 
     var sociologist = allsociologists_complete["data"][i];
-    if (!sociologist["name"].isEmpty){
+    if (sociologist["account"]){
       var checkbox = document.createElement('input');
       checkbox.type = "checkbox";
       checkbox.name = "selected_sociologists";
@@ -44,13 +45,12 @@ function printSociologistsOnWP(data) {
       document.getElementById("sociologists_list").appendChild(profilelink);
       document.getElementById("sociologists_list").appendChild(linebreak);
 
+    } else {
+      faultylinescounter += 1;
     }
-
-
-
-    //var content = document.createTextNode(astring);
-    //theDiv.appendChild(content);
   }
+  //prints number of lines that could not correctly be rendered from the csv file it the log
+  console.log(faultylinescounter + " line(s) from csv not rendered (expected value: 1)")
 }
 
 
@@ -115,4 +115,9 @@ function createSelectedCsv() {
 
     link.click(); // This will download the data file named "my_mastodon_sociologists.csv".
 
-  }
+}
+
+function createAllCsv() {
+  selectAll();
+  createSelectedCsv();
+}
