@@ -15,9 +15,9 @@ function printUrbanistsOnWP(data) {
   console.log(data);
   var allurbanists_complete = Papa.parse(data, {header: true}); // parses csv to json
   var faultylinescounter = 0;
-  for (var i = 0; i < allurbanist_complete["data"].length; i++){
+  for (var i = 0; i < allurbanists_complete["data"].length; i++){
 
-    var urbanist = allurbanist_complete["data"][i];
+    var urbanist = allurbanists_complete["data"][i];
     if (urbanist["account"]){
       var account_for_post = document.createTextNode(urbanist["account"] + " (" + urbanist["name"] + ")");
       const linebreak = document.createElement('br');
