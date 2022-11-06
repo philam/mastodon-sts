@@ -113,7 +113,7 @@ function createSelectedCsv() {
     link.setAttribute("download", "my_sts_list.csv");
     document.body.appendChild(link); // Required for FF
 
-    link.click(); // This will download the data file named "my_sts_list.csv".
+    link.click(); // This will download the data file named "my_urbanists_list.csv".
 
 }
 
