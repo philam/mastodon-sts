@@ -2,24 +2,24 @@ $(document).ready(function() {
   console.log( "ready!" );
   $.ajax({
     type: "GET",
-    url: "resources/sociologists.csv",
+    url: "resources/urbanists.csv",
     dataType: "text",
     success: function(data) {
-      printSociologistsOnWP(data); //define your own function
+      printUrbanistsOnWP(data); //define your own function
     }
   });
 });
 
 // parses csv string into json and creates checkbox for each item on index.html
-function printSociologistsOnWP(data) {
+function printUrbanistsOnWP(data) {
   console.log(data);
-  var allsociologists_complete = Papa.parse(data, {header: true}); // parses csv to json
+  var allurbanists_complete = Papa.parse(data, {header: true}); // parses csv to json
   var faultylinescounter = 0;
-  for (var i = 0; i < allsociologists_complete["data"].length; i++){
+  for (var i = 0; i < allurbanist_complete["data"].length; i++){
 
-    var sociologist = allsociologists_complete["data"][i];
-    if (sociologist["account"]){
-      var account_for_post = document.createTextNode(sociologist["account"] + " (" + sociologist["name"] + ")");
+    var urbanist = allurbanist_complete["data"][i];
+    if (urbanist["account"]){
+      var account_for_post = document.createTextNode(urbanist["account"] + " (" + urbanist["name"] + ")");
       const linebreak = document.createElement('br');
       document.getElementById("list_for_mastodon").appendChild(account_for_post);
       document.getElementById("list_for_mastodon").appendChild(linebreak);
