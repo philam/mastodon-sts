@@ -11,39 +11,39 @@ $(document).ready(function() {
     url: "resources/urbanists.csv",
     dataType: "text",
     success: function(data) {
-      printSociologistsOnWP(data); //define your own function
+      printUrbanistsOnWP(data); //define your own function
     }
   });
 });
 
 // parses csv string into json and creates checkbox for each item on index.html
-function printSociologistsOnWP(data) {
+function printUrbanistsOnWP(data) {
   console.log(data);
-  var allsociologists_complete = Papa.parse(data, {header: true}); // parses csv to json
+  var allurbanists_complete = Papa.parse(data, {header: true}); // parses csv to json
   var faultylinescounter = 0;
-  for (var i = 0; i < allsociologists_complete["data"].length; i++){
+  for (var i = 0; i < allurbanists_complete["data"].length; i++){
 
-    var sociologist = allsociologists_complete["data"][i];
-    if (sociologist["account"]){
+    var urbanist = allurbanists_complete["data"][i];
+    if (urbanist["account"]){
       var checkbox = document.createElement('input');
       checkbox.type = "checkbox";
-      checkbox.name = "selected_sociologists";
-      checkbox.value = sociologist["account"];
-      checkbox.id = "sociologist" + i;
+      checkbox.name = "selected_urbanist";
+      checkbox.value = urbanist["account"];
+      checkbox.id = "urbanist" + i;
       var label = document.createElement('label');
       label.htmlFor = "id";
-      label.appendChild(document.createTextNode(sociologist["account"] + " (" + sociologist["name"] + "), "));
+      label.appendChild(document.createTextNode(urbanist["account"] + " (" + urbanist["name"] + "), "));
       var profilelink = document.createElement('a');
-      profilelink.href = sociologist["link"];
+      profilelink.href = urbanist["link"];
       profilelink.target = "_blank";
-      const linkname = document.createTextNode(sociologist["link"]);
+      const linkname = document.createTextNode(urbanist["link"]);
       profilelink.appendChild(linkname);
       const linebreak = document.createElement('br');
 
-      document.getElementById("sociologists_list").appendChild(checkbox);
-      document.getElementById("sociologists_list").appendChild(label);
-      document.getElementById("sociologists_list").appendChild(profilelink);
-      document.getElementById("sociologists_list").appendChild(linebreak);
+      document.getElementById("urbanists_list").appendChild(checkbox);
+      document.getElementById("urbanists_list").appendChild(label);
+      document.getElementById("urbanists_list").appendChild(profilelink);
+      document.getElementById("urbanists_list").appendChild(linebreak);
 
     } else {
       faultylinescounter += 1;
@@ -57,7 +57,7 @@ function printSociologistsOnWP(data) {
 function selectAll() {
     // selecting all checkboxes
     // of group language
-    var checkboxes = document.getElementsByName('selected_sociologists');
+    var checkboxes = document.getElementsByName('selected_urbanists');
     var values = [];
     // looping through all checkboxes
     for (var i = 0; i < checkboxes.length; i++) {
@@ -69,7 +69,7 @@ function selectAll() {
 function selectNone() {
     // selecting all checkboxes
     // of group language
-    var checkboxes = document.getElementsByName('selected_sociologists');
+    var checkboxes = document.getElementsByName('selected_urbanists');
     var values = [];
     // looping through all checkboxes
     for (var i = 0; i < checkboxes.length; i++) {
@@ -80,7 +80,7 @@ function selectNone() {
 
 function createSelectedCsv() {
     // get checked accounts from checkboxes
-    var checkboxes = document.querySelectorAll('input[name="selected_sociologists"]');
+    var checkboxes = document.querySelectorAll('input[name="selected_urbanists"]');
     var values = [];
     // looping through all checkboxes
     // if checked property is true then push
@@ -110,7 +110,7 @@ function createSelectedCsv() {
     var encodedUri = encodeURI(csvFile);
     var link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "my_sts_list.csv");
+    link.setAttribute("download", "my_urbanists_list.csv");
     document.body.appendChild(link); // Required for FF
 
     link.click(); // This will download the data file named "my_urbanists_list.csv".
